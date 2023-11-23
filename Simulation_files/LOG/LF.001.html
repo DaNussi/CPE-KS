@@ -1,0 +1,118 @@
+﻿<!DOCTYPE HTML>
+<html><head>
+<title>Power Flow</title>
+<style type="text/css">body { font: menu }
+table { font: menu }
+a:link { color: #0066cc; text-decoration: none }
+a:visited { color: #0066cc; text-decoration: none }
+a:hover { text-decoration: underline }
+.title { font-size: 13.5pt; padding-top:0px }
+.erg { border:solid 1px #CDCDCD; border-collapse:collapse; }
+.erg td { border-left:solid 1px #CDCDCD; padding: 2px 6px 2px 6px; text-align:right }
+.erg th { border-left:solid 1px #CDCDCD; padding: 2px 6px 2px 6px; background-color: #EEEEEE }
+.erg tr:nth-child(2n) { background-color: #FaFaFa; }
+.info { border:solid 1px #CDCDCD; border-collapse:collapse; }
+.info td { border-left:solid 1px #CDCDCD; padding: 2px 6px 2px 6px; text-align:left }
+.info th { border-left:solid 1px #CDCDCD; padding: 2px 6px 2px 6px; background-color: #EEEEEE }
+.sep { border-bottom:solid 1px #CDCDCD; padding:0px }
+h1 { color: #224998; font-size: 12pt;padding-top:10px }
+h2 { color: #224998; font-size: 9pt }
+.legende { border:solid 1px white; min-width: 350px; width:400px }
+.legende td { background:#EEEEEE;border-left:solid 1px white; }
+.legende th { background:#CDCDCD;border-color:white;font-weight:bold; }
+.legende .cellRight{ text-align:right; }
+.timelegend{ min-width: 100px; width:150px }
+.timelegend .cellRight{ text-align:right; }
+.alternate { background-color: #FaFaFa; }
+.inhalt {}
+.header {}
+.red{ color:#FF0000; }
+.darkred{ color:#DF0101; }
+pre { font:Arial; font-size:100%; } 
+.lheader{ background-color:#848484; border-bottom:solid 2px black; font-weight: bold; }.theader{ font-weight: bold; }.code { margin:0; font-family:Courier; font-size:8.0pt; }
+.ListHeader{ font-size:105%; text-decoration: underline; font-weight: bold; }
+.highlight{ text-decoration: underline; font-weight: bold; }
+.error{ color:#FF0000; font-size: 110%; padding:10px; }
+.errorListItem{ color:#FF0000; }
+.nobotspace{ margin-bottom:0px; padding-bottom:0px } 
+.notopspace{ margin-top:0px; padding-top:0px } 
+ul { margin-left:0px; padding-left:16px }
+.togglebutton {color:#0066cc;cursor:pointer; }
+.togglesection { margin-left:16px; }</style><script type="text/javascript">
+function alternate() {
+   var tables = document.getElementsByTagName("table");
+   for( i = 0; i < tables.length; ++i ) {
+      if( tables[i].className != "erg" )
+         continue;
+      var rows = tables[i].getElementsByTagName("tr");
+      var iCnt = 0
+      for( j = 0; j < rows.length; j++ ) {
+         if( rows[j].className == "sep" || rows[j].className == "header" )
+            continue;
+         if(iCnt % 2 != 0)
+            rows[j].className = "alternate";
+         iCnt = iCnt + 1;
+      }
+   }
+}
+function getElementsByClassName( clsName ) {
+    var retVal = new Array();
+    var elements = document.getElementsByTagName("*");
+    for(var i = 0;i < elements.length; ++i){
+        if(elements[i].className.indexOf(" ") >= 0){
+            var classes = elements[i].className.split(" ");
+            for(var j = 0;j < classes.length; ++j){
+                if(classes[j] == clsName)
+                    retVal.push(elements[i]);
+            }
+        }
+        else if(elements[i].className == clsName)
+            retVal.push(elements[i]);
+    }
+    return retVal;
+}
+function toggleItemsByClassName( className ) {
+    var retElemArray = getElementsByClassName( className );
+    if( retElemArray.length == 0 ) return -1;
+    var hide = retElemArray[0].style.display != 'none' ? 1 : 0;
+    for( var i = 0; i < retElemArray.length; ++i )
+        retElemArray[i].style.display = hide ? 'none' : '';
+    return hide;
+}
+function toggleItemById( id ) {
+    var element = document.getElementById(id);
+    if( element == null || element == undefined ) return -1;
+    var hide = element.style.display != 'none' ? 1 : 0;
+    element.style.display = hide ? 'none' : '';
+    return hide;
+}
+function toggleText( element, retVal, textShow, textHide ) {
+     switch( retVal ) {
+     case -1: break;
+     case 0: element.innerHTML = textHide; break;
+     case 1: element.innerHTML = textShow; break;
+     }
+}
+</script>
+</head><body onload="alternate()"><h1 class="title">Power Flow</h1><table class="legende"><tr>
+<td>Network name</td>
+<td>Simulation</td>
+</tr>
+<tr>
+<td>Variant</td>
+<td>Base Variant</td>
+</tr>
+<tr>
+<td>Simulation parameter</td>
+<td>LF</td>
+</tr>
+<tr>
+<td>Simulation time</td>
+<td>Thu Nov 23 2023, 10:34:18</td>
+</tr>
+<tr>
+<td>Program version</td>
+<td>PSS SINCAL Platform 20.0</td>
+</tr>
+</table><br><br></body>
+</html>
