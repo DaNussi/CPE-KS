@@ -74,11 +74,13 @@ L2_l = 206; % Meter
 L1_R = L1_l/(L_Gama*L_A)*(1+0.004*(L_Tc-20));
 L1_Rkm = L1_R/(L1_l/1000);
 L1_X = L_Xk*L1_l*0.001;
+L1_Xkm = L1_X/(L1_l/1000);
 L1_Z = L1_R+L1_X*1i;
 
 L2_R = L2_l/(L_Gama*L_A)*(1+0.004*(L_Tc-20));
 L2_Rkm = L2_R/(L2_l/1000);
 L2_X = L_Xk*L2_l*0.001;
+L2_Xkm = L2_X/(L2_l/1000);
 L2_Z = L2_R+L2_X*1i;
 
 
