@@ -127,10 +127,13 @@ SV_Psi = deg2rad(20);
 SV_L = (tan(Ges_Phi) * Ges_R) / (2*pi*SV_f);
 SV_tau = SV_L / Ges_R;
 
-SV_t = 0:0.001:SV_t;
+SV_t = linspace(0,SV_t, 1000);
 SV_I_ks = sqrt(2)*Ik*sin(2*pi*SV_f*SV_t+SV_Psi-Ges_Phi);
 
 % Stromverlauf Plot
 hold on;
 grid on;
 plot(SV_t,SV_I_ks);
+xlabel("Zeit t/s")
+ylabel("Kurzschlussstrom I/A")
+title("Kurzschlussstromverlauf")
