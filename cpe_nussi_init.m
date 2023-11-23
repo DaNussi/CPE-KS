@@ -134,6 +134,6 @@ SV_I_ks = sqrt(2)*Ik*sin(2*pi*SV_f*SV_t+SV_Psi-Ges_Phi);
 hold on;
 grid on;
 plot(SV_t,SV_I_ks);
-xlabel("Zeit t/s")
-ylabel("Kurzschlussstrom I/A")
-title("Kurzschlussstromverlauf")
+xlabel("Zeit t/s");
+ylabel("Kurzschlussstrom I/A");
+title("Kurzschlussstromverlauf");
