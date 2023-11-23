@@ -106,6 +106,31 @@ Ges_Z_temp_2 = (G_Z*ASM_Z)/(G_Z+ASM_Z);
 Ges_Z_temp_3 = Ges_Z_temp_1 + T_Z + N_Z;
 Ges_Z = (Ges_Z_temp_2*Ges_Z_temp_3)/(Ges_Z_temp_2+Ges_Z_temp_3);
 
-% Anfangskurzschlusswechselstrom
-Ik= SS_B_U/(sqrt(3)*Ges_Z);
+Ges_R = real(Ges_Z);
+Ges_X = imag(Ges_Z);
+Ges_R2X = Ges_R / Ges_X;
+Ges_Phi = atan(Ges_X / Ges_R);
 
+% Anfangskurzschlusswechselstrom
+Ik_C = 1.1;
+Ik= (Ik_C * SS_B_U)/(sqrt(3)*Ges_Z);
+
+% Stoßkurzschlussstrom
+ip_K = 1.02+0.98*exp(-3*Ges_R2X);
+ip = ip_K * sqrt(2) * Ik;
+
+% Stromverlauf (SV)
+SV_t = 120e-3;
+SV_f = 50;
+SV_Psi = deg2rad(20);
+    
+SV_L = (tan(Ges_Phi) * Ges_R) / (2*pi*SV_f);
+SV_tau = SV_L / Ges_R;
+
+SV_t = 0:0.001:SV_t;
+SV_I_ks = sqrt(2)*Ik*sin(2*pi*SV_f*SV_t+SV_Psi-Ges_Phi);
+
+% Stromverlauf Plot
+hold on;
+grid on;
+plot(SV_t,SV_I_ks);

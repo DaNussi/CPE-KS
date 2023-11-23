@@ -107,10 +107,27 @@ Ges_Z_temp_3 = Ges_Z_temp_1 + T_Z + N_Z;
 Ges_Z = (Ges_Z_temp_2*Ges_Z_temp_3)/(Ges_Z_temp_2+Ges_Z_temp_3);
 
 % Anfangskurzschlusswechselstrom
-Ik= (SS_B_U)/(sqrt(3)*Ges_Z);
-Ik_abs= abs(Ik)
+Ik_C = 1.1;
+Ik= (Ik_C * SS_B_U)/(sqrt(3)*Ges_Z);
 
-Ik_spitze= Ik*sqrt(2)
+% Stoßkurzschlussstrom
+Ges_R = real(Ges_Z);
+Ges_X = imag(Ges_Z);
+Ges_R2X = Ges_R / Ges_X;
 
-Ik_spitze_abs= abs(Ik_spitze);
+ip_K = 1.02+0.98*exp(-3*Ges_R2X);
+ip = ip_K * sqrt(2) * Ik;
 
+% Stromverlauf (SV)
+SV_t = 120e-3;
+SV_f = 50;
+SV_Psi = deg2rad(20);
+IpAbs = abs(Ip)
+
+phiges = atan(Xges/Rges)
+
+SV_L = (tan(phiges)Rges)/(2pif);
+tau = (L)/(Rges);
+
+tStromverlauf = 0:0.001:tanfang
+ikd = sqrt(2)IKiisin(2piftStromverlauf+Psi-phiges)
